@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './store/app-store.module';
-import { AddError, RemoveError } from './store/actions/errors.action';
-import { LoginUser, SetInitialUser } from './store/actions/auth.action';
-import { AuthDTO } from './models/auth';
+import { SetInitialUser } from '@app/store/actions/auth.action';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { TabChange } from './store/actions/tab.action';
 
 @Component({
   selector: 'app-root',
@@ -12,18 +12,26 @@ import { AuthDTO } from './models/auth';
 })
 
 export class AppComponent implements OnInit {
-  title = 'ideas-app';
-  constructor(
-    private store:Store<AppState>
-  ){}
 
-  ngOnInit(): void {
- /*    this.store.dispatch(new LoginUser(<AuthDTO>({
-      username: "username",
-      password:"password"
-    }))) */
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-    this.store.dispatch(new SetInitialUser())
+  constructor(private _store:Store<AppState>,private _snackBar:MatSnackBar){}
+  ngOnInit() {
+    this._store.dispatch(new SetInitialUser())
+    this._store.dispatch(new TabChange(0))
+    this._store.select(state=>state.error).subscribe(valor=>this.showError(valor.error))
   }
 
+  showError(err){
+    if(err){
+    this._snackBar.open(
+      "Error", err.message || "Internal server error",{
+      duration: 900,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+
+      })
+    }
+  }
 }

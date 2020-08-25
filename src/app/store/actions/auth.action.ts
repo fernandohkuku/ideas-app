@@ -23,7 +23,6 @@ export class SetCurrentUser implements Action{
   constructor(public payload:User | null){}
 }
 
-
 export class SetInitialUser implements Action{
   readonly type = SET_INITIAL_USER
 }

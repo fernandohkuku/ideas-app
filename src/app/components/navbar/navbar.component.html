@@ -1,0 +1,18 @@
+<mat-toolbar  class="navbar">
+    <div *ngFor="let menuItem of items; index">
+      <button
+      mat-button
+      routerLink = {{menuItem.routerLink}}>
+      <mat-icon matSuffix>{{menuItem.iconName}}</mat-icon>
+      {{menuItem.displayName}}
+      </button>
+    </div>
+    <div>
+      <button
+      mat-button
+      routerLink="/auth"
+      >
+      <mat-icon matSuffix>arrow_forward</mat-icon>
+      {{_authService.token ? 'Logout': 'Login'}}</button>
+    </div>
+</mat-toolbar>

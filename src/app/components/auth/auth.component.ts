@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '@app/store/app-store.module';
+import { TabChange } from '@app/store/actions/tab.action';
+
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  activeTabIndex:number
+  constructor(private _store:Store<AppState>){}
+  ngOnInit(){
   }
-
+  ontab(){
+    this._store.dispatch(new TabChange(this.activeTabIndex))
+  }
 }
