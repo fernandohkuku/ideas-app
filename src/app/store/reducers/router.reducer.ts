@@ -7,7 +7,6 @@ export interface RouterStateUrl{
   params:Params
 }
 
-
 export class CustomSerializer
   implements fromRouter.RouterStateSerializer<RouterStateUrl>{
   serialize(routerState:RouterStateSnapshot){
@@ -16,9 +15,7 @@ export class CustomSerializer
     while(state.firstChild){
       state = state.firstChild
     }
-
     const {params} = state
-
     return{url, queryParams, params};
   }
 }

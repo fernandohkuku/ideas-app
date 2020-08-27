@@ -13,6 +13,9 @@ import { UsersComponent } from './users/users.component'
 const routes:Routes = [
   {
     path:'', component:UsersComponent
+  },
+  {
+    path:'**', redirectTo:''
   }
 ]
 

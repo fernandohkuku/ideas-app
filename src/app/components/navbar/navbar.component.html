@@ -1,6 +1,7 @@
 <mat-toolbar  class="navbar">
-    <div *ngFor="let menuItem of items; index">
+    <div>
       <button
+      *ngFor="let menuItem of items; index"
       mat-button
       routerLink = {{menuItem.routerLink}}>
       <mat-icon matSuffix>{{menuItem.iconName}}</mat-icon>

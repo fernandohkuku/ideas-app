@@ -11,9 +11,19 @@ export class NavbarComponent implements OnInit {
 
   items:navItem[] = [
     {
-      displayName:"Home",
-      iconName:"home",
-      routerLink:"/",
+      displayName:'Home',
+      iconName:'home',
+      routerLink:'/',
+    },
+    {
+      displayName:'Users',
+      iconName:'account_box',
+      routerLink:'/users'
+    },
+    {
+      displayName:'Ideas',
+      iconName:'info',
+      routerLink:'ideas'
     }
   ]
 

@@ -5,6 +5,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms'
 import {AppStoreModule} from '@app/store/app-store.module'
 import { AppRoutingModule } from '@app/app-routing.module';
 import {UserModule} from '@app/features/user/user.module'
+import {IdeaModule} from '@app/features/idea/idea.module'
 //Services
 import {ApiService} from '@app/services/api.service'
 import {AuthService} from '@app/services/auth.service'
@@ -35,6 +36,7 @@ import { NavbarComponent } from './components/navbar/navbar.component'
     UIModule,
     BrowserAnimationsModule,
     UserModule,
+    IdeaModule
   ],
   providers: [ApiService, AuthService],
   bootstrap: [AppComponent]

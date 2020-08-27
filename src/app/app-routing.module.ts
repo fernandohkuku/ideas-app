@@ -8,6 +8,12 @@ const routes: Routes = [
   },
   {
     path:'users',loadChildren:'@app/features/user/user.module#UserModule'
+  },
+  {
+    path: 'ideas', loadChildren:'@app/features/idea/idea.module#IdeaModule'
+  },
+  {
+    path: '**', redirectTo: ''
   }
 ];
 

@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   getIdeas(page?:number):Observable<Idea[]>{
-    const endpoint = page ? `ideas?page=${page}`:"ideas"
+    const endpoint = page ? `ideas?page=${page}`:"ideas/"
     return this.request("GET", endpoint);
   }
 
