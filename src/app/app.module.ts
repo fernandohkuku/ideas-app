@@ -1,17 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from "@angular/common/http"
-import {ReactiveFormsModule, FormsModule} from "@angular/forms"
-import {AppStoreModule} from "@app/store/app-store.module"
+import {HttpClientModule} from '@angular/common/http'
+import {ReactiveFormsModule, FormsModule} from '@angular/forms'
+import {AppStoreModule} from '@app/store/app-store.module'
 import { AppRoutingModule } from '@app/app-routing.module';
+import {UserModule} from '@app/features/user/user.module'
 //Services
-import {ApiService} from "@app/services/api.service"
-import {AuthService} from "@app/services/auth.service"
+import {ApiService} from '@app/services/api.service'
+import {AuthService} from '@app/services/auth.service'
 
 
 import { AppComponent } from '@app/app.component';
 import { AuthComponent } from './components/auth/auth.component';
-import {UIModule} from "@app/ui.module";
+import {UIModule} from '@app/ui.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthformComponent } from './components/authform/authform.component';
 import { NavbarComponent } from './components/navbar/navbar.component'
@@ -32,7 +33,8 @@ import { NavbarComponent } from './components/navbar/navbar.component'
     FormsModule,
     ReactiveFormsModule,
     UIModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    UserModule,
   ],
   providers: [ApiService, AuthService],
   bootstrap: [AppComponent]

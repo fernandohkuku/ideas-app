@@ -6,7 +6,6 @@ import {AuthService} from "@app/services/auth.service"
 import { Observable,of} from "rxjs";
 import {mergeMap, catchError,map,tap} from "rxjs/operators"
 import {
-  actions,
   SetInitialUser,
   SetCurrentUser,
   LoginUser,
@@ -18,7 +17,7 @@ import {
 
 import { User } from '@app/models/user';
 import { AddError, RemoveError } from '../actions/errors.action';
-import { AppState } from '../app-store.module';
+import { AppState } from '@app/store/app-store.module';
 
 
 @Injectable()

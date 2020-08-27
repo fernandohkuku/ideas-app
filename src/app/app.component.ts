@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this._store.dispatch(new SetInitialUser())
     this._store.dispatch(new TabChange(0))
-    this._store.select(state=>state.error).subscribe(valor=>this.showError(valor.error))
+    this._store.select(state=>state.error).subscribe(error=>this.showError(error.error))
   }
 
   showError(err){
@@ -30,7 +30,6 @@ export class AppComponent implements OnInit {
       duration: 900,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-
       })
     }
   }
