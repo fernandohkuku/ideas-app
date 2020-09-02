@@ -18,13 +18,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthformComponent } from './components/authform/authform.component';
 import { NavbarComponent } from './components/navbar/navbar.component'
 
+import {UuidGuard} from '@app/services/uuid.guard';
+import { IdeaEditableComponent } from './components/idea/idea-editable/idea-editable.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     AuthformComponent,
-    NavbarComponent
+    NavbarComponent,
+    IdeaEditableComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { NavbarComponent } from './components/navbar/navbar.component'
     UserModule,
     IdeaModule
   ],
-  providers: [ApiService, AuthService],
+  providers: [ApiService, AuthService, UuidGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

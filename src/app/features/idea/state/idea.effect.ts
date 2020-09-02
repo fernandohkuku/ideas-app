@@ -40,7 +40,7 @@ export class IdeaEffects {
     mergeMap(([action, state]: [fromIdea.LoadIdea, AppState]) => {
       const idea = state.ideas.ideas[action.payload];
       if (idea) {
-        return of(new fromIdea.LoadIdeaSuccess());
+        return of(new fromIdea.LoadIdeaSuccess())
       } else {
         return this.api.getIdea(action.payload).pipe(
           mergeMap(res => of(new fromIdea.LoadIdeaSuccess(res))),
@@ -117,5 +117,4 @@ export class IdeaEffects {
     ),
     tap(action => this.router.navigate(['/ideas', action.payload.id]))
   );
-
 }

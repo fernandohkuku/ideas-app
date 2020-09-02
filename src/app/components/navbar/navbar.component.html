@@ -3,7 +3,8 @@
       <button
       *ngFor="let menuItem of items; index"
       mat-button
-      routerLink = {{menuItem.routerLink}}>
+      routerLink = {{menuItem.routerLink}}
+      >
       <mat-icon matSuffix>{{menuItem.iconName}}</mat-icon>
       {{menuItem.displayName}}
       </button>
@@ -11,7 +12,7 @@
     <div>
       <button
       mat-button
-      routerLink="/auth"
+      (click)="onclick()"
       >
       <mat-icon matSuffix>arrow_forward</mat-icon>
       {{_authService.token ? 'Logout': 'Login'}}</button>

@@ -1,0 +1,28 @@
+<!-- <mat-card  *ngFor="let idea of ideas | async" class="card">
+  {{idea.idea}}
+</mat-card> -->
+<div class="Ideas-options card">
+  <button><mat-icon>keyboard_arrow_left</mat-icon></button>
+  <button
+  *ngIf="currentUser"
+  mat-raised-button
+  [routerLink]="['/ideas', 'new']"
+  class="ui-button-info"
+  color="primary"
+  >
+  Create Idea
+  </button>
+  <button><mat-icon>keyboard_arrow_right</mat-icon></button>
+</div>
+
+<mat-spinner class="spinner" *ngIf="(loader | async)"></mat-spinner>
+
+<div *ngIf="!(loader | async)">
+  <app-idea
+  *ngFor="let idea of ideas | async"
+  [idea]=idea
+  [displayOptions]="idea.author.id === currentUser?.id"
+  (onUpvote)="upvote(idea.id)"
+  (onDownvote)="downvote(idea.id)"
+  ></app-idea>
+</div>

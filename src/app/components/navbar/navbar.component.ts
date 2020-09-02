@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@app/services/auth.service';
 import { MatMenuItem } from '@angular/material/menu';
+import { Store } from '@ngrx/store';
+import { AppState } from '@app/store/app-store.module';
+import { SetCurrentUser } from '@app/store/actions/auth.action';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -27,11 +31,21 @@ export class NavbarComponent implements OnInit {
     }
   ]
 
-  constructor(public _authService:AuthService) { }
+  constructor(
+    public _authService:AuthService,
+    private _store:Store<AppState>,
+    private _router:Router
+    ) { }
 
   ngOnInit(): void {
   }
-
+  onclick(){
+    if(this._authService.token){
+      this._authService.token=null
+      this._store.dispatch(new SetCurrentUser(null))
+    }
+    this._router.navigate(['/auth'])
+  }
 }
 
 export interface navItem{

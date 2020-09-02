@@ -12,21 +12,21 @@ import { User } from "@app/models/user"
 @Injectable()
 export class UserEffects {
   constructor(
-    private actions$: Actions,
+    private action$: Actions,
     private store: Store<AppState>,
     private api: ApiService
   ) {
   }
 
   @Effect()
-  loadUsers$:Observable<Action> = this.actions$.pipe(
+  loadUsers$: Observable<Action> = this.action$.pipe(
     ofType<LoadUsers>(LOAD_USERS),
     tap(() => this.store.dispatch(new RemoveError())),
-    mergeMap((action: LoadUsers) => this.api.getUsers().pipe(
-      map((users: User[]) => new LoadUsersSuccess(users)),
-      catchError(err => of(new AddError(err.error))
+    mergeMap(() =>
+      this.api.getUsers().pipe(
+        map(users => new LoadUsersSuccess(users)),
+        catchError(err => of(new AddError(err.error)))
       )
     )
-  ))
-
+  );
 }

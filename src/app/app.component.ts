@@ -4,6 +4,7 @@ import { AppState } from './store/app-store.module';
 import { SetInitialUser } from '@app/store/actions/auth.action';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { TabChange } from './store/actions/tab.action';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +17,11 @@ export class AppComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-  constructor(private _store:Store<AppState>,private _snackBar:MatSnackBar){}
+  constructor(private _store:Store<AppState>,private _snackBar:MatSnackBar,private  _authService:AuthService){}
   ngOnInit() {
-    this._store.dispatch(new SetInitialUser())
+    if(this._authService.token){
+      this._store.dispatch(new SetInitialUser())
+    }
     this._store.dispatch(new TabChange(0))
     this._store.select(state=>state.error).subscribe(error=>this.showError(error.error))
   }
@@ -27,7 +30,7 @@ export class AppComponent implements OnInit {
     if(err){
     this._snackBar.open(
       "Error", err.message || "Internal server error",{
-      duration: 900,
+      duration: 1200,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       })

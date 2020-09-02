@@ -5,7 +5,8 @@ import * as Store from '@app/store/app-store.module'
 export interface UserState{
   users:User[],
   loading:boolean,
-  loaded:boolean
+  loaded:boolean,
+  page:number
 }
 
 

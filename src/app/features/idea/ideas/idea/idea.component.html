@@ -1,0 +1,30 @@
+<mat-card class="card">
+  <div class="idea">
+    <mat-card-header class="votes">
+      <button mat-button (click)="onUpvote.emit()">
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+      <h2>{{idea.upvotes - idea.downvotes || 0}}</h2>
+      <button mat-button (click)="onDownvote.emit()">
+        <mat-icon>thumb_down</mat-icon>
+      </button>
+    </mat-card-header>
+    <h2 [routerLink]="['/ideas',idea.id]" class="header">
+      {{idea.idea}}
+    </h2>
+  </div>
+  <p class="description">
+    {{idea.description}}
+  </p>
+  <div class="footer">
+    <p>
+      Create by <b>{{idea.author.username}}</b> on {{idea.created | date}}
+    </p>
+    <p>
+      <button mat-button [routerLink]="['/ideas', idea.id]">
+        comments: ({{idea.comments.length || 0}})
+      </button>
+    </p>
+  </div>
+
+</mat-card>

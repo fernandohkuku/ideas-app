@@ -6,20 +6,22 @@ export interface ErrorState {
 }
 
 const initialState: ErrorState = {
-  error:undefined
+  error:null
 }
 
-export const errorReducer:(state:ErrorState, action:actions)=> ErrorState =
-(state = initialState, action:actions) => {
-  switch(action.type){
+export const errorReducer: (state: ErrorState, action: actions) => ErrorState = (
+  state = initialState,
+  action: actions
+) => {
+  switch (action.type) {
     case ADD_ERROR:
-      return {...state, error:action.payload};
+      return { ...state, error: action.payload };
     case REMOVE_ERROR:
-      return {...state, error:null}
+      return { ...state, error: null };
     default:
       return state;
   }
-}
+};
 
 /* export function errorReducer(state:ErrorState = initialState, action:actions) {
   switch(action.type){

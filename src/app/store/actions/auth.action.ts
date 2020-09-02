@@ -18,14 +18,15 @@ export class RegisterUser implements Action{
   constructor(public payload:AuthDTO){}
 }
 
+export class SetInitialUser implements Action{
+  readonly type = SET_INITIAL_USER
+}
+
 export class SetCurrentUser implements Action{
   readonly type = SET_CURRENT_USER
   constructor(public payload:User | null){}
 }
 
-export class SetInitialUser implements Action{
-  readonly type = SET_INITIAL_USER
-}
 
 
-export type actions = LoginUser | RegisterUser | SetCurrentUser | SetInitialUser
+export type actions = LoginUser | RegisterUser |  SetInitialUser | SetCurrentUser

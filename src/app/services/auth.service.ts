@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import  {environment} from "@env/environment";
 import { AuthType, AuthDTO } from '@app/models/auth';
 import { mergeMap} from 'rxjs/operators';
-import {of} from "rxjs"
+import {of, Observable} from "rxjs"
 import { User } from '@app/models/user';
 
 
@@ -16,7 +16,7 @@ export class AuthService {
     private _http:HttpClient
   ) { }
 
-  private auth(authType:AuthType, data:AuthDTO){
+  auth(authType:AuthType, data:AuthDTO):Observable<User>{
     return this._http.post(`${this.api}/${authType}`,data).pipe(
       mergeMap((user:User)=> {this.token = user.token;
         return of(user)
@@ -24,20 +24,13 @@ export class AuthService {
     );
   }
 
-  login(data:AuthDTO){
-    return this.auth('login', data)
+  whoami():Observable<User>{
+    return this._http.get<User>(`${this.api}/whoami`,{
+      headers: { authorization: `Bearer ${this.token}`}
+    })
   }
 
-  register(data:AuthDTO){
-    return this.auth('register',data)
-  }
-
-  whoami(){
-    return this._http.get(`${this.api}/whoami`,
-    {headers:{authorization: `Bearer ${this.token}`}})
-  }
-
-  get token(){
+  get token():string{
     return localStorage.getItem("token_idea")
   }
 

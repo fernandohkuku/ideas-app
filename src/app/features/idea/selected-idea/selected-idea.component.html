@@ -1,0 +1,7 @@
+<div *ngIf="idea">
+  <app-idea *ngIf="idea" [idea]="idea"></app-idea>
+
+  <mat-card class="card" *ngFor="let comment of idea.comments">
+    {{comment.comment}}
+  </mat-card>
+</div>
